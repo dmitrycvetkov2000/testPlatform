@@ -8,7 +8,7 @@
 import UIKit
 
 class ModuleBuilder: BuilderProtocol {
-        func createFirst() -> UIViewController {
+        func createFirst() -> FirstVCProtocol {
         let view = FirstVC()
         let viewModel = FirstViewModel()
         view.viewModel = viewModel

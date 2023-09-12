@@ -8,5 +8,5 @@
 import UIKit
 
 protocol BuilderProtocol: AnyObject {
-    func createFirst() -> UIViewController
+    func createFirst() -> FirstVCProtocol
 }

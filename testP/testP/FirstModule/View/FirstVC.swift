@@ -7,9 +7,15 @@
 
 import UIKit
 
-class FirstVC: UIViewController {
+protocol FirstVCProtocol: AnyObject {
+    var viewModel: FirstViewModelProtocol! { get set }
+    var coordinator: AppCoordinator! { get set }
+}
+
+class FirstVC: UIViewController, FirstVCProtocol {
     var viewModel: FirstViewModelProtocol!
-    
+    var coordinator: AppCoordinator!
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .brown
@@ -17,4 +23,5 @@ class FirstVC: UIViewController {
 
 
 }
+
 
