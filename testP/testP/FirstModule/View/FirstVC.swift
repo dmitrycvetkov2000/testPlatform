@@ -7,11 +7,13 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class FirstVC: UIViewController {
+    var viewModel: FirstViewModelProtocol!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .brown
+        self.viewModel = FirstViewModel()
     }
 
 
