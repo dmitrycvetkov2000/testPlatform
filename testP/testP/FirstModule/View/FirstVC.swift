@@ -19,6 +19,12 @@ class FirstVC: UIViewController, FirstVCProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .brown
+        viewModel.getListMovie {
+            print()
+        }
+        viewModel.getDetailInfoAboutMovie {
+            print()
+        }
     }
 
 
