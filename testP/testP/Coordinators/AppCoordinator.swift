@@ -17,7 +17,6 @@ class AppCoordinator: Coordinator {
     func showFirst() {
         let vc = ModuleBuilder().createFirst()
         vc.coordinator = self
-        vc.viewModel = FirstViewModel()
         navigationController.viewControllers.removeAll()
         navigationController.pushViewController(vc as! UIViewController, animated: true)
     }

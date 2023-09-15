@@ -5,7 +5,7 @@
 //  Created by Дмитрий Цветков on 12.09.2023.
 //
 
-import Foundation
+import UIKit
 
 enum ApiType {
     case getListOfMovie
@@ -50,17 +50,19 @@ class APIManager {
     static let shared = APIManager()
     private init() {}
     
-    func getListOfMovie(completion: @escaping (Movie) -> Void) {
+    func getListOfMovie(completion: @escaping (Movie?) -> Void) {
         let request = ApiType.getListOfMovie.request
-
+        
         guard let request = request else { return }
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            
             if let data = data, let movie = try? JSONDecoder().decode(Movie.self, from: data) {
-                completion(movie)
-            } else {
+                    completion(movie)
+                } else {
+                    completion(nil)
+                }
 
-            }
         }
         task.resume()
     }
@@ -73,11 +75,26 @@ class APIManager {
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let data = data, let detail = try? JSONDecoder().decode(DetailMovie.self, from: data) {
                 completion(detail)
-
             } else {
 
             }
         }
         task.resume()
+    }
+    
+    func loadImage(urlString: String, completion: @escaping (UIImage) -> Void) {
+        guard let url = URL(string: urlString) else { return }
+        
+        if let image = CacheManager.shared.getData(key: urlString as NSString) as? UIImage {
+            return
+        }
+        
+        DispatchQueue.global().async {
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    completion(image)
+                }
+            }
+        }
     }
 }
