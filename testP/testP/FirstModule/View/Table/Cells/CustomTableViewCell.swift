@@ -11,23 +11,33 @@ class CustomTableViewCell: UITableViewCell {
     static let identificator = "CustomCell"
     
     let label = UILabel()
-    let image = UIImageView()
+    let customImageView = UIImageView()
 }
 
 // MARK: - create views for cell
 extension CustomTableViewCell {
-    func createImage(urlImageString: String) {
-        image.translatesAutoresizingMaskIntoConstraints = false
-        image.load(urlString: urlImageString)
-        image.contentMode = .scaleAspectFit
-        self.addSubview(image)
-        
+    func configureCell(image: Any, text: String) {
+        createImage(image: image)
+        createLabel(text: text)
+    }
+    
+    func createImage(image: Any) {
+        customImageView.image = nil
+        customImageView.translatesAutoresizingMaskIntoConstraints = false
+        customImageView.contentMode = .scaleAspectFit
+        self.addSubview(customImageView)
         NSLayoutConstraint.activate([
-            image.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
-            image.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0),
-            image.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0),
-            image.heightAnchor.constraint(equalTo: self.widthAnchor)
+            customImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
+            customImageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0),
+            customImageView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0),
+            customImageView.heightAnchor.constraint(equalTo: self.widthAnchor)
         ])
+        
+        if let image = image as? String {
+            customImageView.load(urlString: image)
+        } else {
+            customImageView.image = image as? UIImage
+        }
     }
     
     func createLabel(text: String) {
@@ -35,7 +45,7 @@ extension CustomTableViewCell {
         self.addSubview(label)
         
         NSLayoutConstraint.activate([
-            label.topAnchor.constraint(equalTo: self.image.bottomAnchor, constant: 0),
+            label.topAnchor.constraint(equalTo: customImageView.bottomAnchor, constant: 0),
             label.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0)
         ])
         
