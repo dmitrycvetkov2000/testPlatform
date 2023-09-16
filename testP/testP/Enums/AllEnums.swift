@@ -19,6 +19,8 @@ enum AllEnums {
                 return "photo"
             case .title:
                 return "title"
+            case .idOfMovie:
+                return "idOfMovie"
                 
             }
         case .entityNames(name: let name):
@@ -33,6 +35,7 @@ enum AllEnums {
 enum Keys {
     case photo
     case title
+    case idOfMovie
 }
         
 enum Names: String {
