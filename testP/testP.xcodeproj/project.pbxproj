@@ -213,8 +213,7 @@
 				0A46303F2AB0A9CA0062722E /* Application */,
 				0A36FB1C2AB0B29C00DE6BFC /* Builder */,
 				0A36FB212AB0B49600DE6BFC /* Coordinators */,
-				0A36FB162AB0AC2D00DE6BFC /* FirstModule */,
-				0AD765FC2AB54A780001AA05 /* DetailModule */,
+				0AD766022AB57A870001AA05 /* Modules */,
 				0A36FB2B2AB0E83600DE6BFC /* Api */,
 				0A36FB322AB106DF00DE6BFC /* Extensions */,
 				0AD765F52AB47F650001AA05 /* CoreData */,
@@ -301,6 +300,15 @@
 				0AD765FA2AB490630001AA05 /* DetailModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		0AD766022AB57A870001AA05 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				0A36FB162AB0AC2D00DE6BFC /* FirstModule */,
+				0AD765FC2AB54A780001AA05 /* DetailModule */,
+			);
+			path = Modules;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
