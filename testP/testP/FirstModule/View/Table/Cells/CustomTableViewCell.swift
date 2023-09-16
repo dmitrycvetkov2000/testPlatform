@@ -7,11 +7,12 @@
 
 import UIKit
 
-class CustomTableViewCell: UITableViewCell {
+final class CustomTableViewCell: UITableViewCell {
+// MARK: properties
     static let identificator = "CustomCell"
     
-    let label = UILabel()
-    let customImageView = UIImageView()
+    private let label = UILabel()
+    private let customImageView = UIImageView()
 }
 
 // MARK: - create views for cell

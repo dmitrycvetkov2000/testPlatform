@@ -7,25 +7,22 @@
 
 import UIKit
 
-class ModuleBuilder: BuilderProtocol {
-    func createFirst() -> FirstVCProtocol {
-        let view = FirstVC()
-        let viewModel = FirstViewModel()
-        viewModel.model = MovieModel()
-        
+final class ModuleBuilder: BuilderProtocol {
+    
+    func createFirst(router: RouterProtocol) -> UIViewController {
+        let model = MovieModel()
+        let viewModel = FirstViewModel(model: model)
         let helper = HelperForTableView(viewModel: viewModel)
-        view.viewModel = viewModel
-        view.helper = helper
+        let view = FirstVC(viewModel: viewModel, coordinator: router, helper: helper)
         
         return view
     }
     
-    func createDetail() -> DetailVCProtocol {
-        let view = DetailVC()
-        let viewModel = DetailViewModel()
-        viewModel.model = DetailMovieModel()
-        view.viewModel = viewModel
-        
+    func createDetail(router: RouterProtocol, id: Int, image: UIImage) -> UIViewController {
+        let model = DetailMovieModel()
+        let viewModel = DetailViewModel(model: model)
+        let view = DetailVC(viewModel: viewModel, coordinator: router, id: id, image: image)
+                
         return view
     }
 }

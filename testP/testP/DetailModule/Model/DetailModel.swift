@@ -7,7 +7,7 @@
 
 import Foundation
 
-class DetailMovieModel {
+struct DetailMovieModel {
     var originalTitle: String = ""
     var releaseDate: String = ""
     var budget: Int = 0

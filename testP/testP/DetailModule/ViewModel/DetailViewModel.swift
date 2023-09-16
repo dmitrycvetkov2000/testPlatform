@@ -8,12 +8,16 @@
 import Foundation
 
 protocol DetailViewModelProtocol {
-    var model: DetailMovieModel! { get set }
+    var model: DetailMovieModel { get set }
     func getDetailInfoAboutMovie(id: Int, completion: @escaping () -> Void)
 }
 
-class DetailViewModel {
-    var model: DetailMovieModel!
+final class DetailViewModel {
+    var model: DetailMovieModel
+    
+    init(model: DetailMovieModel) {
+        self.model = model
+    }
 }
 
 extension DetailViewModel: DetailViewModelProtocol {
@@ -38,7 +42,7 @@ extension DetailViewModel: DetailViewModelProtocol {
                     }
                     return false
                 }
-                    
+                
                 completion()
             } else {
                 let masEntity = CoreDataManager.shared.getAllEntity(entityName: AllEnums.entityNames(name: .MovieEntity)).first { element in
@@ -49,10 +53,9 @@ extension DetailViewModel: DetailViewModelProtocol {
                     }
                     return false
                 }
-                
-                self.model!.originalTitle = masEntity?.title ?? ""
-                self.model!.budget = Int(masEntity?.budget ?? 1)
-                self.model!.releaseDate = masEntity?.releaseDate ?? ""
+                self.model.originalTitle = masEntity?.title ?? ""
+                self.model.budget = Int(masEntity?.budget ?? 1)
+                self.model.releaseDate = masEntity?.releaseDate ?? ""
                 
                 completion()
             }

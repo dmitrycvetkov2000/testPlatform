@@ -7,7 +7,8 @@
 
 import UIKit
 
-class HelperForTableView: NSObject {
+final class HelperForTableView: NSObject {
+    // MARK: properties
     var viewModel: FirstViewModelProtocol
     
     init(viewModel: FirstViewModelProtocol) {
@@ -15,6 +16,7 @@ class HelperForTableView: NSObject {
     }
 }
 
+    // MARK: - UITableViewDataSourcees
 extension HelperForTableView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -27,11 +29,11 @@ extension HelperForTableView: UITableViewDataSource {
             return UITableViewCell()
         }
         cell.createImage(image: viewModel.model.results[indexPath.row].posterPath)
-        cell.createLabel(text: viewModel.model?.results[indexPath.row].originalTitle ?? "")
+        cell.createLabel(text: viewModel.model.results[indexPath.row].originalTitle)
         
         if let urlString = self.viewModel.model.results[indexPath.row].posterPath as? String {
             DispatchQueue.global().sync {
-                CoreDataManager.shared.cacheMovie(urlString: urlString, text: self.viewModel.model?.results[indexPath.row].originalTitle ?? "", id: self.viewModel.model?.results[indexPath.row].id ?? 0)
+                CoreDataManager.shared.cacheMovie(urlString: urlString, text: self.viewModel.model.results[indexPath.row].originalTitle, id: self.viewModel.model.results[indexPath.row].id)
             }
         }
         return cell

@@ -7,27 +7,29 @@
 
 import UIKit
 
-class AppCoordinator: Coordinator {
-    var navigationController: UINavigationController
+final class AppCoordinator: RouterProtocol {
     
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
-        self.navigationController.isNavigationBarHidden = true
-    }
-        
+    var navigationController: UINavigationController?
+    var assebleBuilder: BuilderProtocol?
+    
     func showFirst() {
-        let vc = ModuleBuilder().createFirst()
-        vc.coordinator = self
-        navigationController.viewControllers.removeAll()
-        navigationController.pushViewController(vc as! UIViewController, animated: true)
+        if let navigationController = navigationController {
+            guard let mainVC = assebleBuilder?.createFirst(router: self) else { return }
+            navigationController.viewControllers = [mainVC]
+        }
     }
     
     func showDetail(id: Int, image: UIImage) {
-        let vc = ModuleBuilder().createDetail()
-        vc.coordinator = self
-        vc.id = id
-        vc.image = image
-        navigationController.present(vc as! UIViewController, animated: true)
+        if let navigationController = navigationController {
+            guard let detailVC = assebleBuilder?.createDetail(router: self, id: id, image: image) else { return }
+            navigationController.present(detailVC, animated: true)
+        }
+    }
+    
+    init(navigationController: UINavigationController, assebleBuilder: BuilderProtocol) {
+        self.navigationController = navigationController
+        self.navigationController?.isNavigationBarHidden = true
+        self.assebleBuilder = assebleBuilder
     }
 }
 

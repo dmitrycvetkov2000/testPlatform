@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class CoreDataManager {
+final class CoreDataManager {
     static let shared: CoreDataManager = CoreDataManager()
     private init() { ValueTransformer.setValueTransformer(UIImageTransformer(), forName: NSValueTransformerName("UIImageTransformer"))}
     
@@ -18,7 +18,7 @@ class CoreDataManager {
     
     // Описание сущности
     func entityForName(entityName: String) -> NSEntityDescription {
-        return NSEntityDescription.entity(forEntityName: entityName, in: context)!
+        return NSEntityDescription.entity(forEntityName: entityName, in: context) ?? NSEntityDescription()
     }
     
     func isEmptyCoreData() -> Bool {
@@ -45,7 +45,7 @@ class CoreDataManager {
         let container = NSPersistentContainer(name: "DataModel")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
-                fatalError("Unresolved error \(error), \(error.userInfo)")
+                print("Unresolved error \(error), \(error.userInfo)")
             }
         })
         return container
@@ -68,10 +68,12 @@ class CoreDataManager {
         var elements: [T] = []
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: AllEnums.entityNames(name: .MovieEntity).value)
         do {
-            let results = try CoreDataManager.shared.context.fetch(fetchRequest)
-            for result in results as! [MovieEntity] {
-                let searchElement = result.value(forKey: findKey.value) as! T
-                elements.append(searchElement)
+            if let results =  try CoreDataManager.shared.context.fetch(fetchRequest) as? [MovieEntity] {
+                for result in results {
+                    if let searchElement = result.value(forKey: findKey.value) as? T {
+                        elements.append(searchElement)
+                    }
+                }
             }
         } catch {
             print(error)

@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - Movie
-struct Movie: Codable {
+struct Movie: Decodable {
     let page: Int?
     let results: [Result]?
     let totalPages, totalResults: Int?
@@ -21,7 +21,7 @@ struct Movie: Codable {
 }
 
 // MARK: - Result
-struct Result: Codable {
+struct Result: Decodable {
     let adult: Bool?
     let backdropPath: String?
     let genreIDS: [Int]?
@@ -50,7 +50,7 @@ struct Result: Codable {
     }
 }
 
-enum OriginalLanguage: String, Codable {
+enum OriginalLanguage: String, Decodable {
     case cn = "cn"
     case en = "en"
     case hi = "hi"

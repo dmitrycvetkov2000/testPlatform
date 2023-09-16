@@ -6,21 +6,19 @@
 //
 
 import UIKit
-import CoreData
 
 protocol FirstVCProtocol: AnyObject {
-    var viewModel: FirstViewModelProtocol! { get set }
-    var coordinator: AppCoordinator! { get set }
-    var helper: HelperForTableView! { get set }
+
 }
 
-class FirstVC: UIViewController, FirstVCProtocol {
-    var viewModel: FirstViewModelProtocol!
-    var coordinator: AppCoordinator!
-    var helper: HelperForTableView!
+final class FirstVC: UIViewController, FirstVCProtocol {
+    // MARK: properties
+    private var viewModel: FirstViewModelProtocol
+    private var coordinator: RouterProtocol
+    private var helper: HelperForTableView
+    private var tableView: UITableView = UITableView()
     
-    private let tableView: UITableView = UITableView()
-        
+    // MARK: lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -31,9 +29,23 @@ class FirstVC: UIViewController, FirstVCProtocol {
             }
         }
     }
+    
+    init(viewModel: FirstViewModelProtocol, coordinator: RouterProtocol, helper: HelperForTableView) {
+        self.viewModel = viewModel
+        self.coordinator = coordinator
+        self.helper = helper
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
 
-extension FirstVC {
+    // MARK: - create View
+private extension FirstVC {
+    
     func createTableView() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tableView)
@@ -53,7 +65,9 @@ extension FirstVC {
     }
 }
 
+    // MARK: - UITableViewDelegate
 extension FirstVC: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let image: [UIImage] = CoreDataManager.shared.getElementFromBD(findKey: AllEnums.keys(key: .photo))
         coordinator.showDetail(id: viewModel.model.results[indexPath.row].id, image: image[indexPath.row])

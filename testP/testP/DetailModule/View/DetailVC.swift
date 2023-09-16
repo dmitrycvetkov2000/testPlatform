@@ -8,25 +8,25 @@
 import UIKit
 
 protocol DetailVCProtocol: AnyObject {
-    var viewModel: DetailViewModelProtocol! { get set }
-    var coordinator: AppCoordinator! { get set }
-    var id: Int! { get set }
-    var image: UIImage! { get set }
+
 }
 
-class DetailVC: UIViewController, DetailVCProtocol {
-    var viewModel: DetailViewModelProtocol!
-    var coordinator: AppCoordinator!
+final class DetailVC: UIViewController, DetailVCProtocol {
+    // MARK: properties
+    var viewModel: DetailViewModelProtocol
+    var coordinator: RouterProtocol
     
-    let mainTitle = UILabel()
-    let imageView = UIImageView()
-    let additionalInformationLabel = UILabel()
+    private let mainTitle = UILabel()
+    private let imageView = UIImageView()
+    private let additionalInformationLabel = UILabel()
     
-    var id: Int!
-    var image: UIImage!
+    var id: Int
+    var image: UIImage
     
+    // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.backgroundColor = .white
         viewModel.getDetailInfoAboutMovie(id: id) { [weak self] in
             DispatchQueue.main.async {
@@ -36,10 +36,24 @@ class DetailVC: UIViewController, DetailVCProtocol {
             }
         }
     }
+    
+    init(viewModel: DetailViewModelProtocol, coordinator: RouterProtocol, id: Int, image: UIImage) {
+        self.viewModel = viewModel
+        self.coordinator = coordinator
+        self.id = id
+        self.image = image
+        
+        super.init(nibName: nil, bundle: nil)
+    }
 
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
 }
 
-extension DetailVC {
+    // MARK: - create views
+private extension DetailVC {
     
     func createMainTitle(title: String) {
         mainTitle.translatesAutoresizingMaskIntoConstraints = false

@@ -5,20 +5,14 @@
 //  Created by Дмитрий Цветков on 12.09.2023.
 //
 
-import UIKit
+import Foundation
 
-class MovieModel {
+struct MovieModel {
     var results: [SomeMovie] = []
 }
 
-class SomeMovie {
+struct SomeMovie {
     var posterPath: Any
     var originalTitle: String
     var id: Int
-    
-    init(posterPath: Any, originalTitle: String, id: Int) {
-        self.posterPath = posterPath
-        self.originalTitle = originalTitle
-        self.id = id
-    }
 }

@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import CoreData
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,8 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         URLCache.shared.removeAllCachedResponses()
         let window = UIWindow()
         let navController = UINavigationController()
-        coordinator = AppCoordinator(navigationController: navController)
-        coordinator?.showFirst()
+        
+        let assebleBuilder = ModuleBuilder()
+        let router = AppCoordinator(navigationController: navController, assebleBuilder: assebleBuilder)
+        router.showFirst()
+        
         window.rootViewController = navController
         window.makeKeyAndVisible()
         self.window = window

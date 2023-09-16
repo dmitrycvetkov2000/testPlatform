@@ -36,7 +36,7 @@ enum ApiType {
         guard let url = url else { return nil }
         var request = URLRequest(url: url)
         request.allHTTPHeaderFields = headers
-
+        
         switch self {
         case .getListOfMovie, .getDetailInfoAboutMovie:
             request.httpMethod = "GET"
@@ -46,34 +46,35 @@ enum ApiType {
     }
 }
 
-class APIManager {
+final class APIManager {
     static let shared = APIManager()
     private init() {}
+    private let jsonDecoder = JSONDecoder()
     
     func getListOfMovie(completion: @escaping (Movie?) -> Void) {
         let request = ApiType.getListOfMovie.request
         
         guard let request = request else { return }
         
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+        let task = URLSession.shared.dataTask(with: request) { [jsonDecoder] data, response, error in
             
-            if let data = data, let movie = try? JSONDecoder().decode(Movie.self, from: data) {
-                    completion(movie)
-                } else {
-                    completion(nil)
-                }
-
+            if let data = data, let movie = try? jsonDecoder.decode(Movie.self, from: data) {
+                completion(movie)
+            } else {
+                completion(nil)
+            }
+            
         }
         task.resume()
     }
     
     func getDetailInfoAboutMovie(id: Int, completion: @escaping (DetailMovie?) -> Void) {
         let request = ApiType.getDetailInfoAboutMovie(id: id).request
-
+        
         guard let request = request else { return }
         
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            if let data = data, let detail = try? JSONDecoder().decode(DetailMovie.self, from: data) {
+        let task = URLSession.shared.dataTask(with: request) { [jsonDecoder] data, response, error in
+            if let data = data, let detail = try? jsonDecoder.decode(DetailMovie.self, from: data) {
                 completion(detail)
             } else {
                 completion(nil)
