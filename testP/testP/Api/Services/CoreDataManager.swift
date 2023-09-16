@@ -59,7 +59,7 @@ class CoreDataManager {
                 try context.save()
             } catch {
                 let nserror = error as NSError
-                print("Error of save")
+                print("Error of save \(nserror)")
             }
         }
     }
@@ -81,17 +81,20 @@ class CoreDataManager {
     
     func insert<T: NSManagedObject>(object: T) {
         let context = persistentContainer.viewContext
-        
         context.insert(object)
-        saveContext()
+        self.saveContext()
     }
     
-    func cacheMovie(urlString: String, text: String) {
+    func cacheMovie(urlString: String, text: String, id: Int) {
         APIManager.shared.loadImage(urlString: urlString) { image in
             let new = MovieEntity()
             new.title = text
             new.photo = image
-            CoreDataManager.shared.insert(object: new)
+            new.idOfMovie = Int32(id)
+            
+            DispatchQueue.main.async {
+                CoreDataManager.shared.insert(object: new)
+            }
         }
     }
     
@@ -106,7 +109,6 @@ class CoreDataManager {
                 for result in results as! [MovieEntity] {
                     masEntity.append(result)
                 }
-                        
         } catch {
             print(error)
         }
@@ -115,16 +117,11 @@ class CoreDataManager {
     
     func deleteAllEntity(entityName: AllEnums) {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName.value)
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         do {
-            let results = try CoreDataManager.shared.context.fetch(fetchRequest)
-            
-            guard !results.isEmpty else { return }
-            
-                for result in results as! [MovieEntity] {
-                    CoreDataManager.shared.context.delete(result)
-                }
-                        
-        } catch {
+            try CoreDataManager.shared.persistentContainer.persistentStoreCoordinator.execute(deleteRequest, with: CoreDataManager.shared.context)
+            saveContext()
+        } catch let error as NSError {
             print(error)
         }
     }

@@ -21,7 +21,9 @@ class MovieEntity: NSManagedObject {
     
     @NSManaged public var photo: UIImage?
     @NSManaged public var title: String?
-
+    @NSManaged public var idOfMovie: Int32
+    @NSManaged public var releaseDate: String?
+    @NSManaged public var budget: Int64
 }
 
 extension MovieEntity : Identifiable {

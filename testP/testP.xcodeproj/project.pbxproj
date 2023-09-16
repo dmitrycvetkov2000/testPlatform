@@ -28,6 +28,9 @@
 		0A4630302AB0A8790062722E /* FirstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A46302F2AB0A8790062722E /* FirstVC.swift */; };
 		0A4630352AB0A87B0062722E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A4630342AB0A87B0062722E /* Assets.xcassets */; };
 		0A4630382AB0A87B0062722E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A4630362AB0A87B0062722E /* LaunchScreen.storyboard */; };
+		0AD765F72AB48F760001AA05 /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD765F62AB48F760001AA05 /* DetailVC.swift */; };
+		0AD765F92AB48FFB0001AA05 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD765F82AB48FFB0001AA05 /* DetailViewModel.swift */; };
+		0AD765FB2AB490630001AA05 /* DetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD765FA2AB490630001AA05 /* DetailModel.swift */; };
 		0AFBD6DF2AB38BD2008FBB00 /* AllEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFBD6DE2AB38BD2008FBB00 /* AllEnums.swift */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +58,9 @@
 		0A4630342AB0A87B0062722E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A4630372AB0A87B0062722E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0A4630392AB0A87B0062722E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0AD765F62AB48F760001AA05 /* DetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
+		0AD765F82AB48FFB0001AA05 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		0AD765FA2AB490630001AA05 /* DetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModel.swift; sourceTree = "<group>"; };
 		0AFBD6DE2AB38BD2008FBB00 /* AllEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllEnums.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -210,6 +216,9 @@
 				0AD765F52AB47F650001AA05 /* CoreData */,
 				0AD765F42AB47F540001AA05 /* Enums */,
 				0A4630402AB0AA070062722E /* Resources */,
+				0AD765F62AB48F760001AA05 /* DetailVC.swift */,
+				0AD765F82AB48FFB0001AA05 /* DetailViewModel.swift */,
+				0AD765FA2AB490630001AA05 /* DetailModel.swift */,
 			);
 			path = testP;
 			sourceTree = "<group>";
@@ -333,11 +342,13 @@
 				0A36FB362AB10E3100DE6BFC /* CoreDataManager.swift in Sources */,
 				0A36FB2D2AB0FBA200DE6BFC /* HelperForTableView.swift in Sources */,
 				0A36FB3B2AB139C100DE6BFC /* CacheManager.swift in Sources */,
+				0AD765FB2AB490630001AA05 /* DetailModel.swift in Sources */,
 				0A4630302AB0A8790062722E /* FirstVC.swift in Sources */,
 				0A36FB112AB0AB3B00DE6BFC /* FirstViewModel.swift in Sources */,
 				0A36FB282AB0E29D00DE6BFC /* DetailMovie.swift in Sources */,
 				0A36FB242AB0BC4300DE6BFC /* APIManager.swift in Sources */,
 				0A36FB262AB0CB2500DE6BFC /* Movie.swift in Sources */,
+				0AD765F92AB48FFB0001AA05 /* DetailViewModel.swift in Sources */,
 				0A46302C2AB0A8790062722E /* AppDelegate.swift in Sources */,
 				0A36FB392AB115CB00DE6BFC /* DataModel.xcdatamodeld in Sources */,
 				0A36FB312AB0FDA600DE6BFC /* UIImageView+Extensions.swift in Sources */,
@@ -349,6 +360,7 @@
 				0A36FB1E2AB0B46100DE6BFC /* Coordinator.swift in Sources */,
 				0AFBD6DF2AB38BD2008FBB00 /* AllEnums.swift in Sources */,
 				0A36FB2F2AB0FC5800DE6BFC /* CustomTableViewCell.swift in Sources */,
+				0AD765F72AB48F760001AA05 /* DetailVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
