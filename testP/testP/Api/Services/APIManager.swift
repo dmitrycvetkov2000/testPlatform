@@ -67,7 +67,7 @@ class APIManager {
         task.resume()
     }
     
-    func getDetailInfoAboutMovie(id: Int, completion: @escaping (DetailMovie) -> Void) {
+    func getDetailInfoAboutMovie(id: Int, completion: @escaping (DetailMovie?) -> Void) {
         let request = ApiType.getDetailInfoAboutMovie(id: id).request
 
         guard let request = request else { return }
@@ -76,7 +76,7 @@ class APIManager {
             if let data = data, let detail = try? JSONDecoder().decode(DetailMovie.self, from: data) {
                 completion(detail)
             } else {
-
+                completion(nil)
             }
         }
         task.resume()
@@ -85,7 +85,7 @@ class APIManager {
     func loadImage(urlString: String, completion: @escaping (UIImage) -> Void) {
         guard let url = URL(string: urlString) else { return }
         
-        if let image = CacheManager.shared.getData(key: urlString as NSString) as? UIImage {
+        if let _ = CacheManager.shared.getData(key: urlString as NSString) as? UIImage {
             return
         }
         
