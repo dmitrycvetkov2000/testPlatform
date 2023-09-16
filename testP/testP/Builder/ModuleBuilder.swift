@@ -19,4 +19,13 @@ class ModuleBuilder: BuilderProtocol {
         
         return view
     }
+    
+    func createDetail() -> DetailVCProtocol {
+        let view = DetailVC()
+        let viewModel = DetailViewModel()
+        viewModel.model = DetailMovieModel()
+        view.viewModel = viewModel
+        
+        return view
+    }
 }

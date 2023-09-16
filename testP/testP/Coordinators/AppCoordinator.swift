@@ -20,5 +20,13 @@ class AppCoordinator: Coordinator {
         navigationController.viewControllers.removeAll()
         navigationController.pushViewController(vc as! UIViewController, animated: true)
     }
+    
+    func showDetail(id: Int, image: UIImage) {
+        let vc = ModuleBuilder().createDetail()
+        vc.coordinator = self
+        vc.id = id
+        vc.image = image
+        navigationController.present(vc as! UIViewController, animated: true)
+    }
 }
 
