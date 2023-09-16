@@ -22,7 +22,6 @@ extension CustomTableViewCell {
     }
     
     func createImage(image: Any) {
-        customImageView.image = nil
         customImageView.translatesAutoresizingMaskIntoConstraints = false
         customImageView.contentMode = .scaleAspectFit
         self.addSubview(customImageView)

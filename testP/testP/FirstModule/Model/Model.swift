@@ -14,9 +14,11 @@ class MovieModel {
 class SomeMovie {
     var posterPath: Any
     var originalTitle: String
+    var id: Int
     
-    init(posterPath: Any, originalTitle: String) {
+    init(posterPath: Any, originalTitle: String, id: Int) {
         self.posterPath = posterPath
         self.originalTitle = originalTitle
+        self.id = id
     }
 }

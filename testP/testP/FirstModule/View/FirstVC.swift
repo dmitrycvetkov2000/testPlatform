@@ -24,12 +24,12 @@ class FirstVC: UIViewController, FirstVCProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .brown
+        createTableView()
         self.viewModel.getListMovie {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
         }
-        createTableView()
     }
 }
 
@@ -46,7 +46,17 @@ extension FirstVC {
         ])
         
         tableView.dataSource = helper
+        tableView.delegate = self
         tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identificator)
     }
 }
 
+extension FirstVC: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let image: [UIImage] = CoreDataManager.shared.getElementFromBD(findKey: AllEnums.keys(key: .photo))
+        coordinator.showDetail(id: viewModel.model.results[indexPath.row].id, image: image[indexPath.row])
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return view.frame.size.height
+    }
+}
