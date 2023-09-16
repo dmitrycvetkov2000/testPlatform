@@ -13,15 +13,15 @@ protocol DetailVCProtocol: AnyObject {
 
 final class DetailVC: UIViewController, DetailVCProtocol {
     // MARK: properties
-    var viewModel: DetailViewModelProtocol
-    var coordinator: RouterProtocol
+    let viewModel: DetailViewModelProtocol
+    let coordinator: RouterProtocol
     
     private let mainTitle = UILabel()
     private let imageView = UIImageView()
     private let additionalInformationLabel = UILabel()
     
-    var id: Int
-    var image: UIImage
+    private let id: Int
+    private let image: UIImage
     
     // MARK: - lifecycle
     override func viewDidLoad() {

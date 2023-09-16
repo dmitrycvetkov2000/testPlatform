@@ -7,13 +7,17 @@
 
 import UIKit
 
-protocol FirstViewModelProtocol {
+protocol FirstViewModelProtocol: AnyObject {
     var model: MovieModel { get set }
+    var filteredData: ModelFiltered { get set }
+    var isSearching: Bool { get set }
     func getListMovie(completion: @escaping () -> Void)
 }
 
 class FirstViewModel {
     var model: MovieModel
+    var filteredData: ModelFiltered = ModelFiltered()
+    var isSearching = false
     
     init(model: MovieModel) {
         self.model = model

@@ -20,7 +20,11 @@ final class HelperForTableView: NSObject {
 extension HelperForTableView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.model.results.count
+        if viewModel.isSearching {
+            return viewModel.filteredData.results.count
+        } else {
+            return viewModel.model.results.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -28,12 +32,18 @@ extension HelperForTableView: UITableViewDataSource {
         guard let cell = (tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identificator, for: indexPath) as? CustomTableViewCell) else {
             return UITableViewCell()
         }
-        cell.createImage(image: viewModel.model.results[indexPath.row].posterPath)
-        cell.createLabel(text: viewModel.model.results[indexPath.row].originalTitle)
         
-        if let urlString = self.viewModel.model.results[indexPath.row].posterPath as? String {
-            DispatchQueue.global().sync {
-                CoreDataManager.shared.cacheMovie(urlString: urlString, text: self.viewModel.model.results[indexPath.row].originalTitle, id: self.viewModel.model.results[indexPath.row].id)
+        if viewModel.isSearching {
+            cell.createImage(image: viewModel.filteredData.results[indexPath.row].posterPath)
+            cell.createLabel(text: viewModel.filteredData.results[indexPath.row].originalTitle)
+        } else {
+            cell.createImage(image: viewModel.model.results[indexPath.row].posterPath)
+            cell.createLabel(text: viewModel.model.results[indexPath.row].originalTitle)
+            
+            if let urlString = self.viewModel.model.results[indexPath.row].posterPath as? String {
+                DispatchQueue.global().sync {
+                    CoreDataManager.shared.cacheMovie(urlString: urlString, text: self.viewModel.model.results[indexPath.row].originalTitle, id: self.viewModel.model.results[indexPath.row].id)
+                }
             }
         }
         return cell

@@ -86,7 +86,8 @@ final class APIManager {
     func loadImage(urlString: String, completion: @escaping (UIImage) -> Void) {
         guard let url = URL(string: urlString) else { return }
         
-        if let _ = CacheManager.shared.getData(key: urlString as NSString) as? UIImage {
+        if let image = CacheManager.shared.getData(key: urlString as NSString) as? UIImage {
+            completion(image)
             return
         }
         

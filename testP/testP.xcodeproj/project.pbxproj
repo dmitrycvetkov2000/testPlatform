@@ -32,6 +32,7 @@
 		0AD765F92AB48FFB0001AA05 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD765F82AB48FFB0001AA05 /* DetailViewModel.swift */; };
 		0AD765FB2AB490630001AA05 /* DetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD765FA2AB490630001AA05 /* DetailModel.swift */; };
 		0AD766012AB56D360001AA05 /* RouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD766002AB56D360001AA05 /* RouterProtocol.swift */; };
+		0AD766042AB58B610001AA05 /* ModelFiltered.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD766032AB58B610001AA05 /* ModelFiltered.swift */; };
 		0AFBD6DF2AB38BD2008FBB00 /* AllEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFBD6DE2AB38BD2008FBB00 /* AllEnums.swift */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +64,7 @@
 		0AD765F82AB48FFB0001AA05 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		0AD765FA2AB490630001AA05 /* DetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModel.swift; sourceTree = "<group>"; };
 		0AD766002AB56D360001AA05 /* RouterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterProtocol.swift; sourceTree = "<group>"; };
+		0AD766032AB58B610001AA05 /* ModelFiltered.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelFiltered.swift; sourceTree = "<group>"; };
 		0AFBD6DE2AB38BD2008FBB00 /* AllEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllEnums.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -89,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				0A36FB132AB0AC1C00DE6BFC /* Model.swift */,
+				0AD766032AB58B610001AA05 /* ModelFiltered.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -395,6 +398,7 @@
 				0A46302C2AB0A8790062722E /* AppDelegate.swift in Sources */,
 				0A36FB392AB115CB00DE6BFC /* DataModel.xcdatamodeld in Sources */,
 				0A36FB312AB0FDA600DE6BFC /* UIImageView+Extensions.swift in Sources */,
+				0AD766042AB58B610001AA05 /* ModelFiltered.swift in Sources */,
 				0A36FB3F2AB14AC000DE6BFC /* UIImageTransformer.swift in Sources */,
 				0A36FB202AB0B48100DE6BFC /* AppCoordinator.swift in Sources */,
 				0A36FB142AB0AC1C00DE6BFC /* Model.swift in Sources */,
