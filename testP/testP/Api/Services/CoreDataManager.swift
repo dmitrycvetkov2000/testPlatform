@@ -29,9 +29,9 @@ class CoreDataManager {
             
             guard !results.isEmpty else { return true }
             
-                for result in results as! [MovieEntity] {
-                    print("В базе данных:  Photo - \(String(describing: result.photo)), Title - \(String(describing: result.title))")
-                }
+//                for result in results as! [MovieEntity] {
+//                    print("В базе данных:  Photo - \(String(describing: result.photo)), Title - \(String(describing: result.title))")
+//                }
                 return false
                         
         } catch {

@@ -27,6 +27,7 @@ class DetailVC: UIViewController, DetailVCProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
         viewModel.getDetailInfoAboutMovie(id: id) { [weak self] in
             DispatchQueue.main.async {
                 self?.createMainTitle(title: self?.viewModel.model.originalTitle ?? "")

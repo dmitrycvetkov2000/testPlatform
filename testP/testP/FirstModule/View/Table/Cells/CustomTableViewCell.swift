@@ -29,7 +29,7 @@ extension CustomTableViewCell {
             customImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
             customImageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0),
             customImageView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0),
-            customImageView.heightAnchor.constraint(equalTo: self.widthAnchor)
+            customImageView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.7)
         ])
         
         if let image = image as? String {
@@ -45,9 +45,12 @@ extension CustomTableViewCell {
         
         NSLayoutConstraint.activate([
             label.topAnchor.constraint(equalTo: customImageView.bottomAnchor, constant: 0),
+            label.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0),
+            label.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0),
             label.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0)
         ])
         
         label.text = text
+        label.textAlignment = .center
     }
 }

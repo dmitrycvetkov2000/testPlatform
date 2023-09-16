@@ -211,14 +211,12 @@
 				0A36FB1C2AB0B29C00DE6BFC /* Builder */,
 				0A36FB212AB0B49600DE6BFC /* Coordinators */,
 				0A36FB162AB0AC2D00DE6BFC /* FirstModule */,
+				0AD765FC2AB54A780001AA05 /* DetailModule */,
 				0A36FB2B2AB0E83600DE6BFC /* Api */,
 				0A36FB322AB106DF00DE6BFC /* Extensions */,
 				0AD765F52AB47F650001AA05 /* CoreData */,
 				0AD765F42AB47F540001AA05 /* Enums */,
 				0A4630402AB0AA070062722E /* Resources */,
-				0AD765F62AB48F760001AA05 /* DetailVC.swift */,
-				0AD765F82AB48FFB0001AA05 /* DetailViewModel.swift */,
-				0AD765FA2AB490630001AA05 /* DetailModel.swift */,
 			);
 			path = testP;
 			sourceTree = "<group>";
@@ -266,6 +264,16 @@
 				0A36FB3E2AB14AC000DE6BFC /* UIImageTransformer.swift */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		0AD765FC2AB54A780001AA05 /* DetailModule */ = {
+			isa = PBXGroup;
+			children = (
+				0AD765F62AB48F760001AA05 /* DetailVC.swift */,
+				0AD765F82AB48FFB0001AA05 /* DetailViewModel.swift */,
+				0AD765FA2AB490630001AA05 /* DetailModel.swift */,
+			);
+			path = DetailModule;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
