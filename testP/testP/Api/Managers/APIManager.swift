@@ -46,24 +46,49 @@ enum ApiType {
     }
 }
 
+enum NetworkError: Error {
+    case badURL
+    case otherError(Int)
+    case noData
+    case noDecode
+}
+
 final class APIManager {
     static let shared = APIManager()
     private init() {}
     private let jsonDecoder = JSONDecoder()
+    var pathForImageStr = "https://image.tmdb.org/t/p/w500/"
     
-    func getListOfMovie(completion: @escaping (Movie?) -> Void) {
+    func getListOfMovie(completion: @escaping (Result<Movie, NetworkError>) -> Void) {
         let request = ApiType.getListOfMovie.request
         
-        guard let request = request else { return }
+        guard let request = request else {
+            completion(.failure(.badURL))
+            return
+        }
         
         let task = URLSession.shared.dataTask(with: request) { [jsonDecoder] data, response, error in
             
-            if let data = data, let movie = try? jsonDecoder.decode(Movie.self, from: data) {
-                completion(movie)
-            } else {
-                completion(nil)
+            if error != nil {
+                if let httpResponse = response as? HTTPURLResponse {
+                    completion(.failure(.otherError(httpResponse.statusCode)))
+                } else {
+                    completion(.failure(.otherError(-1)))
+                }
+                return
             }
             
+            guard let data = data else {
+                completion(.failure(.noData))
+                return
+            }
+            
+            do {
+                let result = try jsonDecoder.decode(Movie.self, from: data)
+                completion(.success(result))
+            } catch {
+                return completion(.failure(.noDecode))
+            }
         }
         task.resume()
     }
@@ -84,7 +109,7 @@ final class APIManager {
     }
     
     func loadImage(urlString: String, completion: @escaping (UIImage) -> Void) {
-        guard let url = URL(string: urlString) else { return }
+        guard let url = URL(string: "\(pathForImageStr)\(urlString)") else { return }
         
         if let image = CacheManager.shared.getData(key: urlString as NSString) as? UIImage {
             completion(image)

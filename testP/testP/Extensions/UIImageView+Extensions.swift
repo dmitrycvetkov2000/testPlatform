@@ -10,7 +10,7 @@ import UIKit
 extension UIImageView {
     
     func load(urlString: String) {
-        guard let url = URL(string: urlString) else { return }
+        guard let url = URL(string: "\(APIManager.shared.pathForImageStr)\(urlString)") else { return }
         
         if let image = CacheManager.shared.getData(key: urlString as NSString) as? UIImage {
             self.image = image

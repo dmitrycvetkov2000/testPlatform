@@ -40,9 +40,9 @@ extension HelperForTableView: UITableViewDataSource {
             cell.createImage(image: viewModel.model.results[indexPath.row].posterPath)
             cell.createLabel(text: viewModel.model.results[indexPath.row].originalTitle)
             
-            if let urlString = self.viewModel.model.results[indexPath.row].posterPath as? String {
+            if viewModel.state == .online {
                 DispatchQueue.global().sync {
-                    CoreDataManager.shared.cacheMovie(urlString: urlString, text: self.viewModel.model.results[indexPath.row].originalTitle, id: self.viewModel.model.results[indexPath.row].id)
+                    CoreDataManager.shared.cacheMovie(urlString: self.viewModel.model.results[indexPath.row].posterPath as! String, text: self.viewModel.model.results[indexPath.row].originalTitle , id: self.viewModel.model.results[indexPath.row].id )
                 }
             }
         }

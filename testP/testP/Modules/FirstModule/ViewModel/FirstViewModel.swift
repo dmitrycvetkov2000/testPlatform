@@ -7,11 +7,18 @@
 
 import UIKit
 
+enum State {
+    case online
+    case offline
+}
+
 protocol FirstViewModelProtocol: AnyObject {
     var model: MovieModel { get set }
     var filteredData: ModelFiltered { get set }
     var isSearching: Bool { get set }
     func getListMovie(completion: @escaping () -> Void)
+    
+    var state: State { get set }
 }
 
 class FirstViewModel {
@@ -19,34 +26,24 @@ class FirstViewModel {
     var filteredData: ModelFiltered = ModelFiltered()
     var isSearching = false
     
-    init(model: MovieModel) {
+    var service: FirstServiceProtocol = FirstService()
+    
+    var state: State
+    
+    init(model: MovieModel, state: State) {
         self.model = model
+        self.state = state
     }
 }
 
 extension FirstViewModel: FirstViewModelProtocol {
     
     func getListMovie(completion: @escaping () -> Void) {
-        APIManager.shared.getListOfMovie { [weak self] movie in
-            
-            guard let self = self else { return }
-            
-            if movie != nil {
-                CoreDataManager.shared.deleteAllEntity(entityName: AllEnums.entityNames(name: .MovieEntity))
-                movie?.results?.forEach({ res in
-                    self.model.results.append(SomeMovie(posterPath: "https://image.tmdb.org/t/p/w500/\(res.posterPath ?? "")", originalTitle: res.originalTitle ?? "", id: res.id ?? 0 ))
-                })
-                
-                completion()
-            } else {
-                CoreDataManager.shared.getAllEntity(entityName: AllEnums.entityNames(name: .MovieEntity)).forEach { element in
-                    if let element = element as? MovieEntity {
-                        self.model.results.append(SomeMovie(posterPath: element.photo as Any, originalTitle: element.title ?? "", id: Int(element.idOfMovie)))
-                    }
-                }
-                
-                completion()
-            }
+        
+        service.getFirstData { someMovie, state  in
+            self.state = state
+            self.model.results = someMovie 
+            completion()
         }
     }
 }

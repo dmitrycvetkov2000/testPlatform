@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0A36FB112AB0AB3B00DE6BFC /* FirstViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A36FB102AB0AB3B00DE6BFC /* FirstViewModel.swift */; };
-		0A36FB142AB0AC1C00DE6BFC /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A36FB132AB0AC1C00DE6BFC /* Model.swift */; };
+		0A36FB142AB0AC1C00DE6BFC /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A36FB132AB0AC1C00DE6BFC /* MovieModel.swift */; };
 		0A36FB182AB0B25700DE6BFC /* BuilderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A36FB172AB0B25700DE6BFC /* BuilderProtocol.swift */; };
 		0A36FB1A2AB0B28200DE6BFC /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A36FB192AB0B28200DE6BFC /* ModuleBuilder.swift */; };
 		0A36FB1E2AB0B46100DE6BFC /* RouterMainProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A36FB1D2AB0B46100DE6BFC /* RouterMainProtocol.swift */; };
@@ -24,6 +24,7 @@
 		0A36FB3B2AB139C100DE6BFC /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A36FB3A2AB139C100DE6BFC /* CacheManager.swift */; };
 		0A36FB3D2AB1446B00DE6BFC /* MovieEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A36FB3C2AB1446B00DE6BFC /* MovieEntity.swift */; };
 		0A36FB3F2AB14AC000DE6BFC /* UIImageTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A36FB3E2AB14AC000DE6BFC /* UIImageTransformer.swift */; };
+		0A40C02D2ADA2D3E00555FE9 /* FirstService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A40C02C2ADA2D3E00555FE9 /* FirstService.swift */; };
 		0A46302C2AB0A8790062722E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A46302B2AB0A8790062722E /* AppDelegate.swift */; };
 		0A4630302AB0A8790062722E /* FirstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A46302F2AB0A8790062722E /* FirstVC.swift */; };
 		0A4630352AB0A87B0062722E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A4630342AB0A87B0062722E /* Assets.xcassets */; };
@@ -38,7 +39,7 @@
 
 /* Begin PBXFileReference section */
 		0A36FB102AB0AB3B00DE6BFC /* FirstViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewModel.swift; sourceTree = "<group>"; };
-		0A36FB132AB0AC1C00DE6BFC /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		0A36FB132AB0AC1C00DE6BFC /* MovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
 		0A36FB172AB0B25700DE6BFC /* BuilderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuilderProtocol.swift; sourceTree = "<group>"; };
 		0A36FB192AB0B28200DE6BFC /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
 		0A36FB1D2AB0B46100DE6BFC /* RouterMainProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterMainProtocol.swift; sourceTree = "<group>"; };
@@ -54,6 +55,7 @@
 		0A36FB3A2AB139C100DE6BFC /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		0A36FB3C2AB1446B00DE6BFC /* MovieEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieEntity.swift; sourceTree = "<group>"; };
 		0A36FB3E2AB14AC000DE6BFC /* UIImageTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageTransformer.swift; sourceTree = "<group>"; };
+		0A40C02C2ADA2D3E00555FE9 /* FirstService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstService.swift; sourceTree = "<group>"; };
 		0A4630282AB0A8790062722E /* testP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A46302B2AB0A8790062722E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A46302F2AB0A8790062722E /* FirstVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstVC.swift; sourceTree = "<group>"; };
@@ -90,7 +92,7 @@
 		0A36FB152AB0AC2000DE6BFC /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				0A36FB132AB0AC1C00DE6BFC /* Model.swift */,
+				0A36FB132AB0AC1C00DE6BFC /* MovieModel.swift */,
 				0AD766032AB58B610001AA05 /* ModelFiltered.swift */,
 			);
 			path = Model;
@@ -150,20 +152,21 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		0A36FB2A2AB0E82A00DE6BFC /* Services */ = {
+		0A36FB2A2AB0E82A00DE6BFC /* Managers */ = {
 			isa = PBXGroup;
 			children = (
 				0A36FB232AB0BC4300DE6BFC /* APIManager.swift */,
 				0A36FB352AB10E3100DE6BFC /* CoreDataManager.swift */,
 				0A36FB3A2AB139C100DE6BFC /* CacheManager.swift */,
 			);
-			path = Services;
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		0A36FB2B2AB0E83600DE6BFC /* Api */ = {
 			isa = PBXGroup;
 			children = (
-				0A36FB2A2AB0E82A00DE6BFC /* Services */,
+				0A40C02C2ADA2D3E00555FE9 /* FirstService.swift */,
+				0A36FB2A2AB0E82A00DE6BFC /* Managers */,
 				0A36FB292AB0E81800DE6BFC /* Models */,
 			);
 			path = Api;
@@ -401,13 +404,14 @@
 				0AD766042AB58B610001AA05 /* ModelFiltered.swift in Sources */,
 				0A36FB3F2AB14AC000DE6BFC /* UIImageTransformer.swift in Sources */,
 				0A36FB202AB0B48100DE6BFC /* AppCoordinator.swift in Sources */,
-				0A36FB142AB0AC1C00DE6BFC /* Model.swift in Sources */,
+				0A36FB142AB0AC1C00DE6BFC /* MovieModel.swift in Sources */,
 				0A36FB1A2AB0B28200DE6BFC /* ModuleBuilder.swift in Sources */,
 				0AD766012AB56D360001AA05 /* RouterProtocol.swift in Sources */,
 				0A36FB3D2AB1446B00DE6BFC /* MovieEntity.swift in Sources */,
 				0A36FB1E2AB0B46100DE6BFC /* RouterMainProtocol.swift in Sources */,
 				0AFBD6DF2AB38BD2008FBB00 /* AllEnums.swift in Sources */,
 				0A36FB2F2AB0FC5800DE6BFC /* CustomTableViewCell.swift in Sources */,
+				0A40C02D2ADA2D3E00555FE9 /* FirstService.swift in Sources */,
 				0AD765F72AB48F760001AA05 /* DetailVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
