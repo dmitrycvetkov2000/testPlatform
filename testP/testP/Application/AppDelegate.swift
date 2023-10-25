@@ -11,7 +11,8 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var coordinator: AppCoordinator?
+    
+    var appCoordinator: AppCoordinator?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         URLCache.shared.removeAllCachedResponses()
@@ -19,8 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navController = UINavigationController()
         
         let assebleBuilder = ModuleBuilder()
-        let router = AppCoordinator(navigationController: navController, assebleBuilder: assebleBuilder)
-        router.showFirst()
+        appCoordinator = CoordinatorFactory().createAppCoordinator(navController: navController, assebleBuilder: assebleBuilder) 
+        
+        appCoordinator?.start()
         
         window.rootViewController = navController
         window.makeKeyAndVisible()

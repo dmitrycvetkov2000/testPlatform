@@ -11,10 +11,11 @@ protocol FirstVCProtocol: AnyObject {
 
 }
 
-final class FirstVC: UIViewController, FirstVCProtocol {
+final class FirstVC: UIViewController, FirstVCProtocol, FlowControllerProtocol {
+    var completionHandler: ((ImageStr) -> ())?
+    
     // MARK: properties
     private let viewModel: FirstViewModelProtocol
-    private let coordinator: RouterProtocol
     private let helper: HelperForTableView
     private let tableView: UITableView = UITableView()
     private let searchBar: UISearchBar = UISearchBar()
@@ -32,9 +33,8 @@ final class FirstVC: UIViewController, FirstVCProtocol {
         }
     }
     
-    init(viewModel: FirstViewModelProtocol, coordinator: RouterProtocol, helper: HelperForTableView) {
+    init(viewModel: FirstViewModelProtocol, helper: HelperForTableView) {
         self.viewModel = viewModel
-        self.coordinator = coordinator
         self.helper = helper
         
         super.init(nibName: nil, bundle: nil)
@@ -89,16 +89,16 @@ extension FirstVC: UITableViewDelegate {
         
         if viewModel.isSearching {
             if let image = self.viewModel.filteredData.results[indexPath.row].posterPath as? UIImage {
-                self.coordinator.showDetail(id: self.viewModel.filteredData.results[indexPath.row].id, image: image)
+                completionHandler?(ImageStr(image: image, id: self.viewModel.filteredData.results[indexPath.row].id))
             } else {
                 APIManager.shared.loadImage(urlString: viewModel.filteredData.results[indexPath.row].posterPath as? String ?? "") { image in
                     DispatchQueue.main.async {
-                        self.coordinator.showDetail(id: self.viewModel.filteredData.results[indexPath.row].id, image: image)
+                        self.completionHandler?(ImageStr(image: image, id: self.viewModel.filteredData.results[indexPath.row].id))
                     }
                 }
             }
         } else {
-            coordinator.showDetail(id: viewModel.model.results[indexPath.row].id, image: image[indexPath.row])
+            completionHandler?(ImageStr(image: image[indexPath.row], id: viewModel.model.results[indexPath.row].id))
         }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

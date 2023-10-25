@@ -8,6 +8,7 @@
 import UIKit
 
 protocol BuilderProtocol: AnyObject {
-    func createFirst(router: RouterProtocol) -> UIViewController
-    func createDetail(router: RouterProtocol, id: Int, image: UIImage) -> UIViewController
+    func createFirst(router: CoordinatorProtocol) -> FirstVC
+    func createDetail(router: CoordinatorProtocol, data: ImageStr) -> UIViewController
 }
+

@@ -14,34 +14,31 @@ protocol DetailVCProtocol: AnyObject {
 final class DetailVC: UIViewController, DetailVCProtocol {
     // MARK: properties
     let viewModel: DetailViewModelProtocol
-    let coordinator: RouterProtocol
     
     private let mainTitle = UILabel()
     private let imageView = UIImageView()
     private let additionalInformationLabel = UILabel()
     
-    private let id: Int
-    private let image: UIImage
+    
+    private let data: ImageStr
     
     // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .white
-        viewModel.getDetailInfoAboutMovie(id: id) { [weak self] in
+        viewModel.getDetailInfoAboutMovie(id: data.id) { [weak self] in
             DispatchQueue.main.async {
                 self?.createMainTitle(title: self?.viewModel.model.originalTitle ?? "")
-                self?.createImage(image: self?.image ?? UIImage())
+                self?.createImage(image: self?.data.image ?? UIImage())
                 self?.createAdditionalInformationLabel(budget: self?.viewModel.model.budget ?? 1, releaseDate: self?.viewModel.model.releaseDate ?? "")
             }
         }
     }
     
-    init(viewModel: DetailViewModelProtocol, coordinator: RouterProtocol, id: Int, image: UIImage) {
+    init(viewModel: DetailViewModelProtocol, data: ImageStr) {
         self.viewModel = viewModel
-        self.coordinator = coordinator
-        self.id = id
-        self.image = image
+        self.data = data
         
         super.init(nibName: nil, bundle: nil)
     }
